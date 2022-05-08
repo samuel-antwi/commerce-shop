@@ -14,6 +14,8 @@
     "unplugin-icons": "^0.14.1"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.1.8"
+    "@headlessui/vue": "^0.0.0-insiders.c4e35f3",
+    "@pinia/nuxt": "^0.1.8",
+    "@vueuse/nuxt": "^8.4.2"
   }
 }

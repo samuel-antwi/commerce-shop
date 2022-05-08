@@ -7,8 +7,8 @@
 </script>
 
 <template>
-  <nav class="shadow-md py-5">
-    <div class="width-wrapper">
+  <nav class="py-5 shadow-md">
+    <div class="width-wrapper-lg">
       <div v-if="search" class="">
         <SearchProduct class="text-2xl" />
       </div>
@@ -16,7 +16,9 @@
         <NuxtLink to="/">
           <h1>Home</h1>
         </NuxtLink>
-        <div class="flex text-2xl items-center justify-between space-x-7">
+        <div
+          class="items-center justify-between hidden text-2xl md:flex space-x-7"
+        >
           <button @click="showSearchProducts">
             <IconMagnify />
           </button>
@@ -26,6 +28,7 @@
           <NuxtLink to="/cart">
             <IconBasketOutline />
           </NuxtLink>
+          <NuxtLink class="text-lg" to="/login"> Login </NuxtLink>
         </div>
       </div>
     </div>
