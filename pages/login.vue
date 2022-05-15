@@ -1,11 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  definePageMeta({
+    layout: false,
+  })
+</script>
 
 <template>
   <div class="grid grid-cols-2">
     <div class="login"></div>
-    <div class="w-9/12 mx-auto px-4 flex justify-center items-center">
-      <form class="w-full flex flex-col">
-        <h1 class="text-5xl mb-5">Login</h1>
+    <div class="flex items-center justify-center w-9/12 px-4 mx-auto">
+      <form class="flex flex-col w-full">
+        <NavAppLogo />
+        <h1 class="pt-12 mb-5 text-5xl">Login</h1>
         <label class="flex flex-col mb-4">
           <span class="mb-2">Email</span>
           <input class="border-0 py-2.5" type="text" />

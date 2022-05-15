@@ -5,7 +5,7 @@
 <template>
   <div>
     <UtilityBar />
-    <AppNav />
+    <NavAppNav />
     <div @click="closeSearchProducts" class="min-h-screen">
       <slot />
     </div>

@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div class="w-12 p-4 border md:w-8/12">
+  <div class="w-full p-4 border md:w-8/12">
     <span class="flex items-center mb-3 text-gray-600">
       <IconTruck class="mr-3 text-2xl" />
       <p class="text-sm">Free Delivery.</p>

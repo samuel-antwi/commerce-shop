@@ -2,6 +2,7 @@
   import IconMagnify from "~icons/mdi/magnify"
   import IconAccountOutline from "~icons/mdi/account-outline"
   import IconBasketOutline from "~icons/mdi/basket-outline"
+  import CollectionDropdown from "./CollectionDropdown.vue"
 
   const { search, showSearchProducts } = useSearchProduct()
 </script>
@@ -10,12 +11,16 @@
   <nav class="py-5 shadow-md">
     <div class="width-wrapper-lg">
       <div v-if="search" class="">
-        <SearchProduct class="text-2xl" />
+        <NavSearchProduct class="text-2xl" />
       </div>
       <div v-else class="flex items-center justify-between">
-        <NuxtLink to="/">
-          <h1>Home</h1>
-        </NuxtLink>
+        <div>
+          <NavAppLogo />
+        </div>
+        <div>
+          <CollectionDropdown />
+          <!-- <NuxtLink to="/collections">Collections</NuxtLink> -->
+        </div>
         <div
           class="items-center justify-between hidden text-2xl md:flex space-x-7"
         >

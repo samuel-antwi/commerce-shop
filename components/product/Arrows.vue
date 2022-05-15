@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import ChevronLeft from "~icons/mdi/chevron-left"
-  import ChevronRight from "~icons/mdi/chevron-right"
+  import ChevronLeft from "~icons/bi/chevron-left"
+  import ChevronRight from "~icons/bi/chevron-right"
   import { product } from "@/data/product"
 
   const { nextImage, previousImage } = useProductNavigation()
@@ -9,21 +9,22 @@
 <template>
   <div class="flex items-center justify-between">
     <button
-      class="border-blue-400 rounded focus:border-l-0 focus:border-2"
+      @click="previousImage(product)"
+      class="py-8 border-blue-400 rounded-tr rounded-br pr-14 focus:border-l-0 focus:border-2"
       type="button"
       aria-label="Previous"
     >
-      <ChevronLeft
-        @click="previousImage(product)"
-        class="text-3xl md:text-6xl"
-      />
+      <ChevronLeft class="text-3xl text-gray-600 md:text-4xl" />
     </button>
     <button
-      class="border-blue-400 rounded focus:border-r-0 focus:border-2"
+      class="border-blue-400 rounded-tl rounded-bl focus:border-r-0 focus:border-2"
       type="button"
       aria-label="Next"
     >
-      <ChevronRight @click="nextImage(product)" class="text-3xl md:text-6xl" />
+      <ChevronRight
+        @click="nextImage(product)"
+        class="my-8 text-3xl text-gray-600 ml-14 md:text-4xl"
+      />
     </button>
   </div>
 </template>
