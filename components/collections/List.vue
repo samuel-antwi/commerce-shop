@@ -1,14 +1,16 @@
 <script setup lang="ts">
   import { MenuItem } from "@headlessui/vue"
+  import ChevronRight from "~icons/bi/chevron-right"
 
   defineProps({
     title: String,
     handle: String,
+    id: String,
   })
 </script>
 
 <template>
-  <NuxtLink :to="`/collections/${handle}`">
+  <NuxtLink :to="`/collections/${id}`">
     <MenuItem v-slot="{ active }">
       <button
         :class="[
@@ -17,6 +19,9 @@
         ]"
       >
         {{ title }}
+        <span>
+          <ChevronRight class="text-[10px]" />
+        </span>
       </button>
     </MenuItem>
   </NuxtLink>

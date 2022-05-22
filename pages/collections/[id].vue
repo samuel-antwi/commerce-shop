@@ -1,17 +1,26 @@
 <script setup lang="ts">
+  import { client } from "@/utils/client"
+  // const { $medusa } = useNuxtApp()
   const route = useRoute()
 
-  const collectionId = route.params.id
+  const id = route.params.id
 
-  const { data } = await useFetch(
-    `http://localhost:9000/store/products?&collection_id[]=pcol_01G33P7H6B884PYZ80QMC2DERB`
+  const { data: collections } = await useAsyncData(
+    `product-${id}`,
+    async () => {
+      const { products } = await client.products.list({
+        collection_id: [id],
+      })
+
+      return products
+    }
   )
-
-  console.log(data.value)
 </script>
 
 <template>
   <div class="pt-10 width-wrapper-md">
-    <h1>Collection name</h1>
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+      <ProductsList v-for="product in collections" :product="product" />
+    </div>
   </div>
 </template>

@@ -1,15 +1,49 @@
 <script setup lang="ts">
-  const { index, getProductImageInView, imgSrc } = useProductNavigation()
+  import { client } from "@/utils/client"
+  // const { $medusa } = useNuxtApp()
+
+  // Index of product images to
+  //determine which image to show
+  const index = ref(0)
 
   const route = useRoute()
   const productHandle = route.params.handle
 
-  const { data } = await useFetch(
-    `http://localhost:9000/store/products?&handle=${productHandle}`
+  const { data: product } = await useAsyncData(
+    `product-${productHandle}`,
+    async () => {
+      const { products } = await client.products.list({
+        limit: 1,
+        handle: productHandle,
+      })
+      return products[0]
+    }
   )
 
-  const product = data.value.products[0]
-  console.log(product)
+  // Next Image
+  const nextImage = (product) => {
+    const lastItem = product.images.length - 1
+    if (lastItem === index.value) {
+      index.value = 0
+    } else {
+      index.value++
+    }
+  }
+
+  // Previous image
+  const previousImage = (product) => {
+    const lastItem = product.images.length - 1
+    if (index.value === 0) {
+      index.value = lastItem
+    } else {
+      index.value--
+    }
+  }
+
+  // Change product image in view when clicked.
+  const getImage = (itemIndex: number) => {
+    index.value = itemIndex
+  }
 </script>
 
 <template>
@@ -17,17 +51,24 @@
     <div class="grid grid-cols-12 md:gap-8">
       <div class="flex-col hidden col-span-1 md:flex">
         <img
-          v-for="imgSrc in product.images"
-          :key="imgSrc.id"
+          @click="getImage(i)"
+          v-for="(imgUrl, i) in product.images"
+          :key="imgUrl.id"
+          :class="i === index ? 'border-2 rounded border-blue-300' : ''"
           class="object-contain mb-3 cursor-pointer w-18 h-18"
-          :src="imgSrc.url"
+          :src="imgUrl.url"
           alt="Backpack"
         />
       </div>
       <div class="col-span-12 md:col-span-6">
         <div class="relative">
-          <img :src="product.thumbnail" :alt="product.title" />
-          <ProductArrows class="absolute inset-y-0 w-full text-gray-700" />
+          <img :src="product.images[index].url" :alt="product.title" />
+          <ProductArrows
+            :product="product"
+            :nextImage="nextImage"
+            :previousImage="previousImage"
+            class="absolute inset-y-0 w-full text-gray-700"
+          />
         </div>
       </div>
       <div class="col-span-12 pt-8 md:col-span-5 md:pt-0">

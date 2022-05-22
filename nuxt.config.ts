@@ -2,15 +2,31 @@ import { defineNuxtConfig } from "nuxt"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@vueuse/nuxt"],
+  css: ["~/assets/css/tailwind.css"],
+  runtimeConfig: {
+    public: {
+      medusaUrl: process.env.NUXT_PUBLIC_MEDUSA_URL,
+    },
+  },
+  // ssr: false,
   buildModules: [
-    [
-      "unplugin-icons/nuxt",
-      {
-        /* options */
-      },
-    ],
+    "@vueuse/nuxt",
+    "@pinia/nuxt",
+    ["unplugin-icons/nuxt"],
+    "./modules/storesAutoImports.ts",
   ],
 
-  css: ["@/assets/css/index.css"],
+  build: {
+    postcss: {
+      postcssOptions: require("./postcss.config.js"),
+    },
+    transpile: ["@headlessui/vue"],
+  },
+
+  // runtimeConfig: {
+  //   public: {
+  //     BACKEND_URL:
+  //       process.env.NUXT_PUBLIC_MEDUSA_URL || "http://localhost:9000",
+  //   },
+  // },
 })

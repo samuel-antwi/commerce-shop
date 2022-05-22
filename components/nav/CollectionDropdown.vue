@@ -1,13 +1,14 @@
 <script setup lang="ts">
   import { Menu, MenuButton, MenuItems } from "@headlessui/vue"
-  const { data: collections } = await useFetch(
-    "http://localhost:9000/store/collections"
-  )
+
+  const { fetchCollections } = useFetches()
+
+  const collections = await fetchCollections()
 </script>
 
 <template>
   <div>
-    <Menu as="div" class="relative inline-block">
+    <Menu as="div" class="relative inline-block w-[400px]">
       <div>
         <MenuButton> Collections </MenuButton>
       </div>
@@ -20,14 +21,15 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute w-64 p-5 mt-2 origin-top-right bg-white divide-y divide-gray-100 shadow-lg focus:outline-none"
+          class="absolute p-5 mt-2 origin-top-right bg-white divide-y divide-gray-100 shadow-lg focus:outline-none"
         >
-          <div class="px-1 py-1">
+          <div class="grid grid-cols-2 px-1 py-1">
             <CollectionsList
-              v-for="collection in collections.collections"
+              v-for="collection in collections"
               :key="collection.id"
               :title="collection.title"
               :handle="collection.handle"
+              :id="collection.id"
             />
           </div>
         </MenuItems>

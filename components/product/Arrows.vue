@@ -1,9 +1,12 @@
 <script setup lang="ts">
   import ChevronLeft from "~icons/bi/chevron-left"
   import ChevronRight from "~icons/bi/chevron-right"
-  import { product } from "@/data/product"
 
-  const { nextImage, previousImage } = useProductNavigation()
+  defineProps({
+    product: Object,
+    nextImage: Function,
+    previousImage: Function,
+  })
 </script>
 
 <template>
@@ -17,14 +20,12 @@
       <ChevronLeft class="text-3xl text-gray-600 md:text-4xl" />
     </button>
     <button
+      @click="nextImage(product)"
       class="border-blue-400 rounded-tl rounded-bl focus:border-r-0 focus:border-2"
       type="button"
       aria-label="Next"
     >
-      <ChevronRight
-        @click="nextImage(product)"
-        class="my-8 text-3xl text-gray-600 ml-14 md:text-4xl"
-      />
+      <ChevronRight class="my-8 text-3xl text-gray-600 ml-14 md:text-4xl" />
     </button>
   </div>
 </template>

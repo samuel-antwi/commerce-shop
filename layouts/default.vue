@@ -6,7 +6,7 @@
   <div>
     <UtilityBar />
     <NavAppNav />
-    <div @click="closeSearchProducts" class="min-h-screen">
+    <div @click="closeSearchProducts" class="min-h-screen overflow-hidden">
       <slot />
     </div>
     <AppFooter />

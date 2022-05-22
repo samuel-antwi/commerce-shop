@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  defineProps({
+  const props = defineProps({
     product: Object,
   })
+
+  const { product } = toRefs(props)
 </script>
 
 <template>
@@ -9,8 +11,6 @@
     <img class="mb-3" :src="product.thumbnail" :alt="product.name" />
     <div class="text-center">
       <p class="text-sm text-gray-600">{{ product.title }}</p>
-      <!-- <p>£{{ product.price }}</p>
-          <p v-if="product.color">{{ product.color }}</p> -->
     </div>
   </NuxtLink>
 </template>

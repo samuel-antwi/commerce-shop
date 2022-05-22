@@ -4,7 +4,7 @@
 
 <template>
   <div class="relative w-1/2 mx-auto">
-    <input class="w-full py-3" type="text" />
+    <input class="w-full py-3 rounded-md" type="text" />
     <IconMagnify class="inset-center right-2" />
   </div>
 </template>
