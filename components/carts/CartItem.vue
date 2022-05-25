@@ -52,7 +52,7 @@
         <button
           type="button"
           aria-label="remove product"
-          class="flex items-center justify-center w-6 h-6 font-semibold bg-gray-200 rounded-full"
+          class="flex items-center justify-center w-6 h-6 font-semibold bg-gray-200 rounded-full hover:bg-black hover:text-gray-200"
         >
           <IconClose />
         </button>

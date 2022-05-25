@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const isCartEmpty = ref(true)
+  const isCartEmpty = ref(false)
 </script>
 
 <template>

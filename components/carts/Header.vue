@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import IconCart from "~icons/mdi/cart-outline"
   import IconChevronRight from "~icons/mdi/chevron-right"
-  const emptyCart = ref(true)
+  const emptyCart = ref(false)
 </script>
 
 <template>
@@ -13,7 +13,7 @@
       </NuxtLink>
     </div>
     <div v-else class="flex items-center">
-      <div class="mr-4">
+      <div class="mr-4 bg-[#f4f4fb]">
         <h2 class="text-gray-500">Subtotal</h2>
         <p class="text-2xl text-gray-700">£24.00</p>
       </div>

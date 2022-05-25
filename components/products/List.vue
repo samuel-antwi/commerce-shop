@@ -9,7 +9,7 @@
 <template>
   <NuxtLink :to="`/product/${product.handle}`">
     <img class="mb-3" :src="product.thumbnail" :alt="product.name" />
-    <div class="text-center">
+    <div>
       <p class="text-sm text-gray-600">{{ product.title }}</p>
     </div>
   </NuxtLink>

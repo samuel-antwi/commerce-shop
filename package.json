@@ -26,6 +26,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "@vueuse/core": "^8.5.0",
     "@vueuse/nuxt": "^8.4.2",
-    "pinia": "^2.0.14"
+    "pinia": "^2.0.14",
+    "uuid": "^8.3.2"
   }
 }

@@ -14,10 +14,12 @@
     phone: "",
   })
 
-  const { signup } = useAuth()
+  const authStore = useAuthStore()
+
+  const signup = authStore.signup(user)
 
   const handleSignUp = () => {
-    signup(user)
+    signup
     router.push("/")
   }
 </script>

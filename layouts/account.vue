@@ -4,9 +4,11 @@
 
 <template>
   <div>
-    <UtilityBar />
-    <NavAppNav />
-    <main @click="closeSearchProducts">
+    <div class="flex items-center justify-between">
+      <NavAppLogo />
+      <h1>My Account</h1>
+    </div>
+    <main>
       <slot />
     </main>
     <AppFooter />

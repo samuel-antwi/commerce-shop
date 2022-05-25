@@ -2,6 +2,7 @@ import { defineNuxtConfig } from "nuxt"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  ssr: false,
   css: ["~/assets/css/tailwind.css"],
   runtimeConfig: {
     public: {
@@ -9,12 +10,7 @@ export default defineNuxtConfig({
     },
   },
   // ssr: false,
-  buildModules: [
-    "@vueuse/nuxt",
-    "@pinia/nuxt",
-    ["unplugin-icons/nuxt"],
-    "./modules/storesAutoImports.ts",
-  ],
+  buildModules: ["@vueuse/nuxt", "@pinia/nuxt", ["unplugin-icons/nuxt"]],
 
   build: {
     postcss: {
@@ -22,11 +18,4 @@ export default defineNuxtConfig({
     },
     transpile: ["@headlessui/vue"],
   },
-
-  // runtimeConfig: {
-  //   public: {
-  //     BACKEND_URL:
-  //       process.env.NUXT_PUBLIC_MEDUSA_URL || "http://localhost:9000",
-  //   },
-  // },
 })

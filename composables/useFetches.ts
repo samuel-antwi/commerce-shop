@@ -1,11 +1,6 @@
 import { client } from "@/utils/client"
 
 export const useFetches = () => {
-  const getProducts = async () => {
-    const { products: data } = await client.products.list()
-    return data
-  }
-
   // Fetch all products
   const fetchProducts = async () =>
     (
@@ -41,7 +36,6 @@ export const useFetches = () => {
     ).data
 
   return {
-    getProducts,
     fetchProducts,
     fetchCollections,
     fetchProductsOverview,

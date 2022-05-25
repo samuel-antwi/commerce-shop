@@ -1,24 +1,22 @@
 <script setup lang="ts">
   import { client } from "@/utils/client"
-  // const { $medusa } = useNuxtApp()
 
   // Index of product images to
   //determine which image to show
   const index = ref(0)
 
   const route = useRoute()
-  const productHandle = route.params.handle
 
-  const { data: product } = await useAsyncData(
-    `product-${productHandle}`,
-    async () => {
-      const { products } = await client.products.list({
-        limit: 1,
-        handle: productHandle,
-      })
-      return products[0]
-    }
-  )
+  // Get product slug
+  const slug = route.params.slug
+
+  const { data: product } = await useAsyncData(`product-${slug}`, async () => {
+    const { products } = await client.products.list({
+      limit: 1,
+      handle: slug,
+    })
+    return products[0]
+  })
 
   // Next Image
   const nextImage = (product) => {
@@ -64,6 +62,7 @@
         <div class="relative">
           <img :src="product.images[index].url" :alt="product.title" />
           <ProductArrows
+            v-if="product.images.length > 1"
             :product="product"
             :nextImage="nextImage"
             :previousImage="previousImage"

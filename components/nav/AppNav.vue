@@ -5,12 +5,6 @@
   import CollectionDropdown from "./CollectionDropdown.vue"
   import IconHeart from "~icons/mdi/cards-heart-outline"
 
-  const { logOut } = useAuth()
-
-  const handleLogout = () => {
-    logOut()
-  }
-
   const { search, showSearchProducts } = useSearchProduct()
 </script>
 
@@ -25,14 +19,21 @@
           <div>
             <NavAppLogo />
           </div>
-          <CollectionDropdown class="hidden md:block" />
+          <div
+            class="flex items-center justify-between space-x-6 tracking-wider text-gray-700"
+          >
+            <CollectionDropdown class="hidden md:block" />
+            <NuxtLink to="/">OUR STORY</NuxtLink>
+            <NuxtLink to="/">REVIEWS</NuxtLink>
+            <NuxtLink to="/">REWARD</NuxtLink>
+          </div>
           <div
             class="items-center justify-between hidden text-2xl md:flex space-x-7"
           >
             <button @click="showSearchProducts">
               <IconMagnify />
             </button>
-            <NuxtLink to="/accounts">
+            <NuxtLink to="/my-account">
               <IconAccountOutline />
             </NuxtLink>
             <NuxtLink to="/saved-lists">
@@ -42,10 +43,6 @@
               <CartsCartTotal />
               <IconBasketOutline />
             </NuxtLink>
-
-            <!-- <button @click="handleLogout" class="text-lg" to="/login">
-              Logout
-            </button> -->
           </div>
         </div>
       </div>

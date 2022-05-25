@@ -1,17 +1,25 @@
 <script setup lang="ts">
   import "@/assets/css/tailwind.css"
-  import { useFetches } from "@/composables/useFetches"
+  import { client } from "@/utils/client"
 
-  const { fetchProducts, getProducts } = useFetches()
-  const products = await fetchProducts()
-
-  console.log(products.value)
+  const {
+    data: products,
+    error,
+    pending,
+  } = await useAsyncData(`products`, async () => {
+    const { products } = await client.products.list()
+    return products
+  })
 </script>
 
 <template>
-  <div class="pt-12 overflow-hidden width-wrapper">
+  <div class="pt-12 overflow-hidden width-wrapper-lg">
+    <p v-if="error">{{ error }}</p>
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
-      <ProductsList v-for="product in products" :product="product" />
+      <div v-if="pending">
+        <span>Loading...</span>
+      </div>
+      <ProductsList v-else v-for="product in products" :product="product" />
     </div>
   </div>
 </template>
