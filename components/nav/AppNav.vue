@@ -33,7 +33,7 @@
             <button @click="showSearchProducts">
               <IconMagnify />
             </button>
-            <NuxtLink to="/my-account">
+            <NuxtLink to="/my-account/overview">
               <IconAccountOutline />
             </NuxtLink>
             <NuxtLink to="/saved-lists">
