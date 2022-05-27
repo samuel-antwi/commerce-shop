@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { User } from "@medusajs/medusa"
+  import { useAuthStore } from "~~/stores/AuthStore"
   definePageMeta({
     layout: false,
   })
@@ -30,7 +31,7 @@
     <div class="flex items-center justify-center w-9/12 px-4 mx-auto">
       <form @submit.prevent="handleSignUp" class="flex flex-col w-full">
         <NavAppLogo />
-        <h1 class="pt-12 mb-5 text-5xl">Create Account</h1>
+        <h1 class="pt-12 mb-5 text-3xl md:text-4xl">Create Account</h1>
         <BaseInput v-model="user.first_name" type="text" label="First Name" />
         <BaseInput v-model="user.last_name" type="text" label="Last Name" />
         <BaseInput

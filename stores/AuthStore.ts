@@ -1,6 +1,7 @@
 import { client } from "@/utils/client"
 import { User, Customer } from "@medusajs/medusa"
 import { defineStore } from "pinia"
+import { useLocalStorage } from "@vueuse/core"
 
 export const useAuthStore = defineStore("AuthStore", () => {
   const signup = async (user) => {

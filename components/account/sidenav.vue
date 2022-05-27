@@ -1,5 +1,5 @@
 <script setup>
-  import { v4 as uuid } from "uuid"
+  import { client } from "@/utils/client"
   import Avatar from "./avatar.vue"
   import LinkItem from "./linkItem.vue"
   import IconPerson from "~icons/bi/person"
@@ -11,6 +11,23 @@
   import IconLogout from "~icons/mdi/logout"
 
   const route = useRoute()
+
+  const linkItems = [
+    { name: "Account overview", url: "overview", icon: IconPerson },
+    { name: "My details", url: "my-details" },
+    { name: "My orders", url: "orders" },
+    { name: "My returns", url: "returns" },
+    { name: "Address book", url: "addresses" },
+    { name: "Change password", url: "change-password" },
+  ]
+
+  const logOut = async () => {
+    try {
+      await fetch("http://localhost:9000/store.auth")
+    } catch (error) {
+      computed.log(error)
+    }
+  }
 </script>
 
 <template>
@@ -20,7 +37,7 @@
       class="mb-2 link-item"
       :class="
         route.name === 'my-account-overview'
-          ? 'border-l-4 border-blue-500'
+          ? 'border-l-4  border-blue-500'
           : null
       "
       link="/my-account/overview"
@@ -94,7 +111,7 @@
       <p>Address book</p>
     </LinkItem>
     <hr />
-    <LinkItem class="link-item">
+    <LinkItem @click="logOut" class="link-item">
       <button class="flex" type="button" aria-label="sign out">
         <IconLogout class="mr-3 text-2xl text-gray-600" />
         <p>Sign out</p>

@@ -32,7 +32,7 @@
     <div class="flex items-center justify-center w-9/12 px-4 mx-auto">
       <form @submit.prevent="login" class="flex flex-col w-full">
         <NavAppLogo />
-        <h1 class="pt-12 mb-5 text-5xl">Login</h1>
+        <h1 class="pt-12 mb-5 text-3xl md:text-4xl">Login</h1>
         <BaseInput v-model="user.email" type="text" label="Email" />
         <BaseInput v-model="user.password" type="password" label="Password" />
         <button type="submit" class="btn-n">Login</button>
@@ -43,7 +43,7 @@
               >Sign Up</NuxtLink
             >
           </p>
-          <NuxtLink class="block" to="/account/forgot"
+          <NuxtLink class="block" to="/identity/password/reset"
             >Forgot your password?</NuxtLink
           >
         </div>

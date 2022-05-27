@@ -12,6 +12,10 @@
       type: String,
       default: "",
     },
+    basic: {
+      type: Boolean,
+      default: false,
+    },
   })
 </script>
 
@@ -22,7 +26,12 @@
       <small v-if="optional" class="text-gray-600">({{ optional }})</small>
     </label>
     <input
-      class="border-0 py-2.5"
+      :class="
+        basic
+          ? 'border bg-white py-3.5'
+          : 'border-0 bg-[#f6f4f1] focus:ring-0 focus:bg-[#eee9e2]'
+      "
+      class="py-2.5"
       @input="$emit('update:modelValue', $event.target.value)"
       :value="modelValue"
       v-bind="$attrs"
@@ -31,11 +40,6 @@
 </template>
 
 <style scoped>
-  input {
-    background: #f6f4f1;
-    @apply focus:ring-0 focus:bg-[#eee9e2];
-  }
-
   label {
     @apply font-medium;
   }
