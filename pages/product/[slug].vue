@@ -45,7 +45,7 @@
 </script>
 
 <template>
-  <div class="pt-10 width-wrapper-md">
+  <div class="py-12 width-wrapper-md">
     <div class="grid grid-cols-12 md:gap-8">
       <div class="flex-col hidden col-span-1 md:flex">
         <img

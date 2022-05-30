@@ -62,11 +62,11 @@
     <LinkItem
       class="link-item"
       :class="
-        route.name === 'my-account-my-returns'
+        route.name === 'my-account-returns'
           ? 'border-l-4 border-blue-500'
           : null
       "
-      link="/my-account/my-returns"
+      link="/my-account/returns"
     >
       <IconReturn class="mr-3 text-2xl text-gray-600" />
       <p>My returns</p>

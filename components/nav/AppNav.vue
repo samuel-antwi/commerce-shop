@@ -4,6 +4,7 @@
   import IconBasketOutline from "~icons/mdi/basket-outline"
   import CollectionDropdown from "./CollectionDropdown.vue"
   import IconHeart from "~icons/mdi/cards-heart-outline"
+  import AccountDropdown from "./AccountDropdown.vue"
 
   const { search, showSearchProducts } = useSearchProduct()
 </script>
@@ -28,14 +29,12 @@
             <NuxtLink to="/">REWARD</NuxtLink>
           </div>
           <div
-            class="items-center justify-between hidden text-2xl md:flex space-x-7"
+            class="items-center justify-between hidden text-xl md:flex space-x-7"
           >
             <button @click="showSearchProducts">
               <IconMagnify />
             </button>
-            <NuxtLink to="/my-account/overview">
-              <IconAccountOutline />
-            </NuxtLink>
+            <AccountDropdown />
             <NuxtLink to="/saved-lists">
               <IconHeart />
             </NuxtLink>
