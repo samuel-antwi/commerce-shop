@@ -1,18 +1,19 @@
 import { client } from "@/utils/client"
-import { User, Customer } from "@medusajs/medusa"
+import { Customer } from "@medusajs/medusa"
 import { defineStore } from "pinia"
-import { useLocalStorage } from "@vueuse/core"
 
 export const useAuthStore = defineStore("AuthStore", () => {
+  const customer = useCookie<Customer>("user")
   const signup = async (user) => {
     try {
-      await client.customers.create({
+      const { customer: data } = await client.customers.create({
         email: user.email,
         first_name: user.first_name,
         last_name: user.last_name,
         password: user.password,
         phone: user.phone,
       })
+      customer.value = customer.value || data
     } catch (error) {
       console.log(error.message)
     }
@@ -20,14 +21,15 @@ export const useAuthStore = defineStore("AuthStore", () => {
 
   const login = async (user) => {
     try {
-      await client.auth.authenticate({
+      const { customer: data } = await client.auth.authenticate({
         email: user.email,
         password: user.password,
       })
+      customer.value = customer.value || data
     } catch (error) {
       console.log(error)
     }
   }
 
-  return { login, signup }
+  return { login, signup, customer }
 })

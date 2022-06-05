@@ -1,17 +1,15 @@
 <script setup lang="ts">
-  import { client } from "@/utils/client"
-
   // Index of product images to
   //determine which image to show
   const index = ref(0)
-
   const route = useRoute()
+  const { $medusa } = useNuxtApp()
 
   // Get product slug
   const slug = route.params.slug
 
   const { data: product } = await useAsyncData(`product-${slug}`, async () => {
-    const { products } = await client.products.list({
+    const { products } = await $medusa.products.list({
       limit: 1,
       handle: slug,
     })

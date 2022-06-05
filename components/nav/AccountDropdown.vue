@@ -5,8 +5,9 @@
   import IconReturn from "~icons/mdi/cash-refund"
   import IconStore from "~icons/mdi/store-outline"
   import IconInformation from "~icons/mdi/information-outline"
+  import { useAuthStore } from "~~/stores/AuthStore"
 
-  const { user } = useUser()
+  const { customer } = useAuthStore()
 </script>
 
 <template>
@@ -29,11 +30,11 @@
           <div class="flex flex-col space-y-4 text-base text-gray-600">
             <div class="bg-gray-100">
               <div class="flex items-center justify-between p-3">
-                <div v-if="user" class="flex items-center">
+                <div v-if="customer" class="flex items-center">
                   <h2 class="mr-3 font-semibold text-black">
                     Hi
                     <span class="tracking-wider uppercase">{{
-                      user.first_name
+                      customer.first_name
                     }}</span>
                   </h2>
                   <button

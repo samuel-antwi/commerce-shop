@@ -1,12 +1,13 @@
 <script setup lang="ts">
   import ChevronDown from "~icons/bi/chevron-down"
-  import { client } from "@/utils/client"
   import { Menu, MenuButton, MenuItems } from "@headlessui/vue"
+
+  const { $medusa } = useNuxtApp()
 
   const { data: collectionList } = await useAsyncData(
     `collectionList`,
     async () => {
-      const { collections } = await client.collections.list()
+      const { collections } = await $medusa.collections.list()
       return collections
     }
   )

@@ -16,6 +16,9 @@
       type: Boolean,
       default: false,
     },
+    type: {
+      default: "",
+    },
   })
 </script>
 
@@ -35,6 +38,7 @@
       @input="$emit('update:modelValue', $event.target.value)"
       :value="modelValue"
       v-bind="$attrs"
+      :type="type"
     />
   </div>
 </template>

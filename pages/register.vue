@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { User } from "@medusajs/medusa"
-  import { useAuthStore } from "~~/stores/AuthStore"
   definePageMeta({
     layout: false,
   })
@@ -15,13 +13,20 @@
     phone: "",
   })
 
-  const authStore = useAuthStore()
-
-  const signup = authStore.signup(user)
-
-  const handleSignUp = () => {
-    signup
-    router.push("/")
+  const signup = async () => {
+    const { $medusa } = useNuxtApp()
+    try {
+      await $medusa.customers.create({
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        password: user.password,
+        phone: user.phone,
+      })
+      router.push("/")
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 </script>
 
@@ -29,7 +34,7 @@
   <div class="grid grid-cols-2">
     <div class="register"></div>
     <div class="flex items-center justify-center w-9/12 px-4 mx-auto">
-      <form @submit.prevent="handleSignUp" class="flex flex-col w-full">
+      <form @submit.prevent="signup" class="flex flex-col w-full">
         <NavAppLogo />
         <h1 class="pt-12 mb-5 text-3xl md:text-4xl">Create Account</h1>
         <BaseInput v-model="user.first_name" type="text" label="First Name" />
@@ -58,7 +63,6 @@
   .btn-n {
     @apply border-gray-600 mb-6 transition-all duration-300 ease-in-out border py-2.5 hover:bg-[black] hover:text-gray-50 font-semibold;
   }
-
   .register {
     background-image: url("@/assets/images/login-img.jpeg");
     background-repeat: no-repeat;
