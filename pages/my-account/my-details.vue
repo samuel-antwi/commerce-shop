@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { Icon } from "@iconify/vue"
   import { useAuthStore } from "~~/stores/AuthStore"
+  import { ChevronLeftIcon, UserIcon } from "@heroicons/vue/outline"
   definePageMeta({
     layout: "account",
     middleware: "auth",
@@ -12,22 +13,32 @@
 <template>
   <div>
     <div v-if="!customer">Loading</div>
-    <div class="min-h-screen bg-[#eeeeee]">
-      <div class="grid max-w-5xl grid-cols-3 gap-10 px-4 pt-12 mx-auto">
-        <div class="col-span-1">
+    <div class="bg-[#eeeeee]">
+      <div class="max-w-5xl grid-cols-3 gap-10 px-4 pt-12 mx-auto md:grid">
+        <div class="hidden col-span-1 md:block">
           <AccountSidenav />
         </div>
-        <div class="col-span-2 p-10 bg-white">
-          <Icon class="text-4xl" icon="mdi:card-account-details-outline" />
-          <h1 class="pt-4 mb-5 text-3xl font-bold tracking-wide uppercase">
-            My details
-          </h1>
-          <p class="text-gray-700">
-            Feel free to edit any of your details below so your Trendo account
-            is totally up to date.
-          </p>
-          <form class="w-9/12 pt-12">
-            <!-- <input v-model="him" type="text" /> -->
+        <div class="col-span-2 p-5 bg-white md:p-10">
+          <div class="hidden md:block">
+            <Icon class="text-4xl" icon="mdi:card-account-details-outline" />
+            <h1 class="pt-4 mb-5 text-3xl font-bold tracking-wide uppercase">
+              My details
+            </h1>
+            <p class="text-gray-700">
+              Feel free to edit any of your details below so your Trendo account
+              is totally up to date.
+            </p>
+          </div>
+          <div class="flex md:hidden">
+            <NuxtLink class="flex items-center mr-10" to="/my-account">
+              <ChevronLeftIcon class="w-6 h-6" />
+              <UserIcon class="w-6 h-6 -ml-2" />
+            </NuxtLink>
+            <h1 class="text-2xl font-semibold tracking-wide uppercase">
+              My details
+            </h1>
+          </div>
+          <form class="w-full pt-7 md:pt-12 md:w-9/12">
             <BaseInput
               v-model="customer.first_name"
               class="tracking-wide text-gray-600 uppercase"

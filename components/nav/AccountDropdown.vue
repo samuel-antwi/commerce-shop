@@ -72,7 +72,7 @@
               <MenuItem>
                 <NuxtLink
                   class="flex items-center mb-5 hover:text-blue-500"
-                  to="/my-account/overview"
+                  to="/my-account"
                 >
                   <IconAccountOutline class="mr-3 text-2xl" />
                   <span>My Account</span>

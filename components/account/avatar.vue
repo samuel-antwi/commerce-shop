@@ -14,7 +14,9 @@
     </div>
     <div class="ml-2">
       <h1 class="text-lg text-gray-800">Hi,</h1>
-      <p class="text-lg font-semibold tracking-wider text-gray-800 uppercase">
+      <p
+        class="flex flex-wrap text-lg font-semibold tracking-wider text-gray-800 uppercase"
+      >
         <span class="mr-1">{{ newCustomer.first_name }}</span>
         <span>{{ newCustomer.last_name }}</span>
       </p>

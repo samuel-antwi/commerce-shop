@@ -36,11 +36,9 @@
     <LinkItem
       class="mb-2 link-item"
       :class="
-        route.name === 'my-account-overview'
-          ? 'border-l-4  border-blue-500'
-          : null
+        route.name === 'my-account' ? 'border-l-4  border-blue-500' : null
       "
-      link="/my-account/overview"
+      link="/my-account"
     >
       <IconPerson class="mr-3 text-2xl text-gray-600" />
       <p class="font-semibold">Account overview</p>
