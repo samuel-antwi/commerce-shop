@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^0.0.0-insiders.c4e35f3",
+    "@heroicons/vue": "^1.0.6",
     "@medusajs/medusa": "^1.3.0",
     "@medusajs/medusa-js": "^1.2.0",
     "@nuxt/kit": "^3.0.0-rc.3",

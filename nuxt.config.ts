@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     postcss: {
       postcssOptions: require("./postcss.config.js"),
     },
-    transpile: ["@headlessui/vue", "unplugin-icons/nuxt"],
+    transpile: ["@headlessui/vue", "unplugin-icons/nuxt", "@heroicons/vue"],
   },
   css: ["~/assets/css/tailwind.css"],
   runtimeConfig: {

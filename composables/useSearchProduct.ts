@@ -11,10 +11,15 @@ const useSearchProduct = () => {
     return
   }
 
+  const searchProducts = (query) => {
+    console.log(query)
+  }
+
   return {
     search,
     showSearchProducts,
     closeSearchProducts,
+    searchProducts,
   }
 }
 

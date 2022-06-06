@@ -11,6 +11,12 @@
     const { products } = await $medusa.products.list()
     return products
   })
+
+  // const store = useStore()
+
+  // const regions = await store.getRegions()
+
+  console.log(products.value)
 </script>
 
 <template>

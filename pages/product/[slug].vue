@@ -8,13 +8,16 @@
   // Get product slug
   const slug = route.params.slug
 
-  const { data: product } = await useAsyncData(`product-${slug}`, async () => {
-    const { products } = await $medusa.products.list({
-      limit: 1,
-      handle: slug,
-    })
-    return products[0]
-  })
+  const { data: product, pending } = await useAsyncData(
+    `product-${slug}`,
+    async () => {
+      const { products } = await $medusa.products.list({
+        limit: 1,
+        handle: slug,
+      })
+      return products[0]
+    }
+  )
 
   // Next Image
   const nextImage = (product) => {
@@ -40,6 +43,8 @@
   const getImage = (itemIndex: number) => {
     index.value = itemIndex
   }
+
+  console.log(product.value)
 </script>
 
 <template>
@@ -70,11 +75,13 @@
       </div>
       <div class="col-span-12 pt-8 md:col-span-5 md:pt-0">
         <div class="mb-5">
-          <h1 class="text-4xl text-gray-600">{{ product.title }}</h1>
+          <h1 class="text-2xl text-gray-600">{{ product.title }}</h1>
           <!-- <p class="py-3 text-gray-500">{{ product.color }}</p> -->
-          <h2 class="mb-10 text-3xl text-gray-600">£{{ product.price }}</h2>
-          <p>{{ product.description }}</p>
+          <h2 class="text-3xl text-gray-600">£{{ product.price }}</h2>
+          <h2 class="text-sm text-gray-800 uppercase">Color:</h2>
+          <!-- <p>{{ product.description }}</p> -->
         </div>
+        <ProductSizeSelector :variants="product.variants" />
         <hr class="mb-10" />
         <div class="grid grid-cols-12 gap-5">
           <ProductAddToBasketButton class="col-span-10" />
