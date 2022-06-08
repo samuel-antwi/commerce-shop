@@ -25,7 +25,7 @@
 </script>
 
 <template>
-  <div v-if="variants.length" class="mb-5">
+  <div v-if="variants.length > 1" class="mb-5">
     <div class="flex items-center justify-between">
       <span class="text-sm font-semibold tracking-wider text-gray-700 uppercase"
         >Size:</span
@@ -85,6 +85,11 @@
         </div>
       </Listbox>
     </div>
+  </div>
+  <div class="mb-5" v-else>
+    <h2 class="font-medium">
+      Size: <span class="ml-5 text-sm font-thin tracking-wide">One size</span>
+    </h2>
   </div>
 </template>
 

@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useMainStore } from "~~/stores/MainStore"
+
+  const { cart } = useMainStore()
+</script>
 
 <template>
   <div class="cart-items">
-    <p class="text-[12px]">6</p>
+    <p class="text-[12px]">{{ cart.items.length }}</p>
   </div>
 </template>
 

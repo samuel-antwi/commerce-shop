@@ -1,12 +1,12 @@
-import { client } from "@/utils/client"
 import { Customer } from "@medusajs/medusa"
 import { defineStore } from "pinia"
 
 export const useAuthStore = defineStore("AuthStore", () => {
+  const { $medusa } = useNuxtApp()
   const customer = useCookie<Customer>("user")
   const signup = async (user) => {
     try {
-      const { customer: data } = await client.customers.create({
+      const { customer: data } = await $medusa.customers.create({
         email: user.email,
         first_name: user.first_name,
         last_name: user.last_name,
@@ -21,7 +21,7 @@ export const useAuthStore = defineStore("AuthStore", () => {
 
   const login = async (user) => {
     try {
-      const { customer: data } = await client.auth.authenticate({
+      const { customer: data } = await $medusa.auth.authenticate({
         email: user.email,
         password: user.password,
       })

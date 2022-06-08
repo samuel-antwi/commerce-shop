@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { useAuthStore } from "~~/stores/AuthStore"
+
   definePageMeta({
     layout: false,
   })
@@ -13,19 +15,12 @@
     phone: "",
   })
 
-  const signup = async () => {
-    const { $medusa } = useNuxtApp()
-    try {
-      await $medusa.customers.create({
-        email: user.email,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        password: user.password,
-        phone: user.phone,
-      })
+  const { signup, customer } = useAuthStore()
+
+  const handleSignup = async () => {
+    await signup(user)
+    if (customer) {
       router.push("/")
-    } catch (error) {
-      console.log(error.message)
     }
   }
 </script>
@@ -34,7 +29,7 @@
   <div class="grid grid-cols-2">
     <div class="register"></div>
     <div class="flex items-center justify-center w-9/12 px-4 mx-auto">
-      <form @submit.prevent="signup" class="flex flex-col w-full">
+      <form @submit.prevent="handleSignup" class="flex flex-col w-full">
         <NavAppLogo />
         <h1 class="pt-12 mb-5 text-3xl md:text-4xl">Create Account</h1>
         <BaseInput v-model="user.first_name" type="text" label="First Name" />

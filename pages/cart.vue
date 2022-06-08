@@ -1,11 +1,13 @@
 <script setup lang="ts">
-  const isCartEmpty = ref(false)
+  import { useMainStore } from "~~/stores/MainStore"
+
+  const { cart } = useMainStore()
 </script>
 
 <template>
-  <div class="pt-12 width-wrapper">
-    <CartsHeader />
-    <div v-if="!isCartEmpty">
+  <div class="min-h-screen pt-12 width-wrapper">
+    <div v-if="cart.items.length">
+      <CartsHeader />
       <CartsFreeShipping />
       <CartsCartItem />
     </div>

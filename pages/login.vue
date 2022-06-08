@@ -20,6 +20,14 @@
     login(user)
     router.push("/")
   }
+
+  const { customer } = useAuthStore()
+
+  onMounted(() => {
+    if (customer) {
+      router.push("/")
+    }
+  })
 </script>
 
 <template>

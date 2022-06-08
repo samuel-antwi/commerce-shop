@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { Product } from "@medusajs/medusa"
   // Index of product images to
   //determine which image to show
   const index = ref(0)
@@ -6,8 +7,9 @@
   const { $medusa } = useNuxtApp()
 
   // Get product slug
-  const slug = route.params.slug
+  const slug: string = route.params.slug as string
 
+  // Get product details
   const { data: product, pending } = await useAsyncData(
     `product-${slug}`,
     async () => {
@@ -18,6 +20,46 @@
       return products[0]
     }
   )
+
+  if (!product.value) {
+    useCustomError({
+      statusCode: 404,
+      statusMessage: "Product not found",
+    })
+  }
+
+  const { fetchCollections } = useFetches()
+
+  const collections = await fetchCollections()
+
+  const { filters: _filters } = useFilters({
+    products: [product.value as Product],
+    collections: collections.value,
+  })
+
+  const filters = computed(() =>
+    _filters.value.filter(({ name }) => name !== "Collection")
+  )
+
+  const selectedOptions = ref(
+    Object.fromEntries(
+      filters.value.map(({ name, options }) => [name, options[0].value])
+    )
+  )
+
+  const variant = computed(() => {
+    return product.value.variants.find((variant) => {
+      return variant.options.every(
+        (option) =>
+          option.value ===
+          selectedOptions.value[
+            filters.value.find((filter) =>
+              filter.options.map((o) => o.value).includes(option.value)
+            ).name
+          ]
+      )
+    })
+  })
 
   // Next Image
   const nextImage = (product) => {
@@ -44,7 +86,9 @@
     index.value = itemIndex
   }
 
-  console.log(product.value)
+  const { formatPrice } = usePrices()
+
+  const price = computed(() => formatPrice(variant.value))
 </script>
 
 <template>
@@ -75,9 +119,10 @@
       </div>
       <div class="col-span-12 pt-8 md:col-span-5 md:pt-0">
         <div class="mb-5">
-          <h1 class="text-2xl text-gray-600">{{ product.title }}</h1>
-          <!-- <p class="py-3 text-gray-500">{{ product.color }}</p> -->
-          <h2 class="text-3xl text-gray-600">£{{ product.price }}</h2>
+          <h1 class="text-gray-600">{{ product.title }}</h1>
+          <h2 class="py-5 text-xl font-semibold tracking-wider text-gray-600">
+            {{ price }}
+          </h2>
           <h2 class="text-sm text-gray-800 uppercase">Color:</h2>
           <!-- <p>{{ product.description }}</p> -->
         </div>

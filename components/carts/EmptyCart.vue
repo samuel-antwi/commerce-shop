@@ -1,9 +1,17 @@
 <script setup lang="ts">
-  import IconCart from "~icons/mdi/cart-outline"
+  import { ChevronRightIcon, LockClosedIcon } from "@heroicons/vue/outline"
 </script>
 
 <template>
-  <div>
+  <div class="max-w-2xl mx-auto">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-xl font-bold md:text-4xl">Your cart</h1>
+      <div>
+        <NuxtLink class="text-[#ae867a] underline flex items-center" to="/"
+          >Continue shopping <ChevronRightIcon class="w-5 h-5" />
+        </NuxtLink>
+      </div>
+    </div>
     <div class="flex flex-col items-center py-32 border border-gray-300">
       <p class="mb-4 text-gray-600">Your cart is empty</p>
       <NuxtLink

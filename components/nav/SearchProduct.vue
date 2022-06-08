@@ -6,6 +6,7 @@
 
   const { searchProducts } = useSearchProduct()
 
+  // A function to search for product
   const handleSearchProducts = async () => {
     await searchProducts(query.value)
     router.push(`/search/?q=${query.value}`)
@@ -32,6 +33,7 @@
             class="w-6 h-6 mr-3 text-gray-600 cursor-pointer"
           />
           <button
+            :disabled="!query"
             type="submit"
             :class="
               query

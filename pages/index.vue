@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import "@/assets/css/tailwind.css"
+  import { useMainStore } from "~~/stores/MainStore"
   const { $medusa } = useNuxtApp()
   const errorMsg = ref("Sorry, can't fetch products")
 
@@ -11,12 +12,6 @@
     const { products } = await $medusa.products.list()
     return products
   })
-
-  // const store = useStore()
-
-  // const regions = await store.getRegions()
-
-  console.log(products.value)
 </script>
 
 <template>

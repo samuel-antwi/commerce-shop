@@ -23,9 +23,9 @@
 </script>
 
 <template>
-  <div class="flex flex-col px-0 mb-2 border-0">
-    <label class="mb-2" for="modelValue" v-if="label"
-      >{{ label }}
+  <div class="flex flex-col px-0 mb-5 border-0">
+    <label class="mb-1" for="modelValue" v-if="label"
+      >{{ label }}:
       <small v-if="optional" class="text-gray-600">({{ optional }})</small>
     </label>
     <input

@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="flex items-center py-10 mb-2 bg-white">
+  <div v-if="customer" class="flex items-center py-10 mb-2 bg-white">
     <div class="initials">
       <span>{{ newCustomer.first_name.charAt(0) }}</span>
       <span>{{ newCustomer.last_name.charAt(0) }}</span>
