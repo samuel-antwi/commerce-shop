@@ -21,7 +21,7 @@
             <NavAppLogo />
           </div>
           <div
-            class="flex items-center justify-between space-x-6 tracking-wider text-gray-700"
+            class="items-center justify-between hidden space-x-6 tracking-wider text-gray-700 md:flex"
           >
             <CollectionDropdown class="hidden md:block" />
             <NuxtLink to="/">OUR STORY</NuxtLink>

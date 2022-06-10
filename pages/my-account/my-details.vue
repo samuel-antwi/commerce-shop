@@ -68,7 +68,7 @@
               basic
             />
             <button
-              class="w-full disabled:bg-[#dddddd] disabled:text-gray-50 px-3 py-3.5 mt-4 hover:bg-gray-800 font-semibold tracking-wide text-gray-200 uppercase bg-black"
+              class="w-full focus:ring-2 focus:outline-none focus:ring-gray-800 focus:ring-offset-2 disabled:bg-[#dddddd] disabled:text-gray-50 px-3 py-3.5 mt-4 hover:bg-gray-800 font-semibold tracking-wide text-gray-200 uppercase bg-black"
             >
               Save changes
             </button>

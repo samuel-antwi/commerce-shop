@@ -6,20 +6,15 @@
 
   const { $medusa } = useNuxtApp()
 
-  const router = useRouter()
+  const { brandName } = useBrandName()
 
   const email = ref("")
   const errorMsg = ref("")
 
   const handlePasswordReset = async () => {
-    try {
-      await $medusa.customers.generatePasswordToken({
-        email: email.value,
-      })
-      router.push("/identity/password/sent")
-    } catch (error) {
-      console.log(error)
-    }
+    await $medusa.customers.generatePasswordToken({
+      email: email.value,
+    })
   }
 </script>
 
@@ -44,14 +39,25 @@
       </div>
       <div class="pt-12">
         <h1
-          class="mb-6 text-xl font-semibold tracking-wider text-center uppercase"
+          class="mb-6 text-lg font-semibold tracking-wider text-center uppercase"
         >
-          Reset your password
+          RESET PASSWORD LINK SENT
         </h1>
-        <p class="text-gray-600">
-          Type in your email address below and we'll send you an email with
-          instructions on how to create a new password
-        </p>
+        <div
+          class="flex flex-col w-full mx-auto space-y-4 text-sm text-gray-600 md:w-10/12"
+        >
+          <p class="">We've sent you an email to reset your password</p>
+          <p>
+            To create your new password, click the link in the email and enter a
+            new one - easy
+          </p>
+          <p>
+            Didn't receive the email? Check your junk email, any other email
+            addresses linked to your
+            <span class="font-semibold uppercase">{{ brandName }}</span>
+            account, or click below to resend the email
+          </p>
+        </div>
       </div>
       <div class="pt-10 md:px-10">
         <div v-if="errorMsg" class="py-3 mb-4 bg-gray-100">
@@ -63,23 +69,12 @@
           class="w-full mx-auto md:w-10/12"
           @submit.prevent="handlePasswordReset"
         >
-          <div class="flex flex-col mb-6">
-            <label
-              class="mb-3 font-semibold tracking-wider text-gray-500 uppercase"
-              for="email"
-              >Email address:</label
-            >
-            <input
-              v-model="email"
-              class="py-3 dark:bg-at-dark-secondary focus:ring-slate-400"
-              type="text"
-            />
+          <div class="items-center md:space-x-4 md:flex">
+            <button class="mb-4 reset-btn md:mb-0">Resend email</button>
+            <button class="reset-btn">
+              <NuxtLink to="/login"> Sign in </NuxtLink>
+            </button>
           </div>
-          <button
-            class="w-full py-3 mt-3 font-semibold tracking-widest uppercase bg-black hover:bg-gray-700 text-gray-50 dark:text-gray-300"
-          >
-            Reset password
-          </button>
         </form>
       </div>
     </div>
@@ -92,5 +87,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
     color: #374151;
+  }
+
+  .reset-btn {
+    @apply w-full py-3 font-semibold tracking-widest uppercase border-2 border-gray-300 hover:text-gray-500 transition duration-200 ease-in-out;
   }
 </style>
